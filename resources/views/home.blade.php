@@ -1,25 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-{{-- <div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Dashboard') }}</div>
-
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-
-                    {{ __('You are logged in!') }}
-                </div>
-            </div>
-        </div>
-    </div>
-</div> --}}
 
 <!-- HOME -->
 <section class="home-section section-hero overlay bg-image" style="margin-top: -24px; background-image: url({{ asset('assets/images/hero_1.jpg') }});" id="home-section">
@@ -80,7 +61,7 @@
 
   </section>
   
-  <section class="py-5 bg-image overlay-primary fixed overlay" id="next" style="background-image: url('images/hero_1.jpg');">
+  <section class="py-5 bg-image overlay-primary fixed overlay" id="next" style="background-image: url('{{ asset('assets/images/hero_1.jpg') }}');">
     <div class="container">
       <div class="row mb-5 justify-content-center">
         <div class="col-md-7 text-center">
@@ -130,161 +111,38 @@
 
       <div class="row mb-5 justify-content-center">
         <div class="col-md-7 text-center">
-          <h2 class="section-title mb-2">43,167 Job Listed</h2>
+          <h2 class="section-title mb-2">{{ $jobCount }} Job Listed</h2>
         </div>
       </div>
       
+      @foreach ($jobs as $job)
       <ul class="job-listings mb-5">
         <li class="job-listing d-block d-sm-flex pb-3 pb-sm-0 align-items-center">
-          <a href="job-single.html"></a>
+          <a href="{{ route('job.show', $job->id) }}"></a>
           <div class="job-listing-logo">
-            <img src="images/job_logo_1.jpg" alt="Free Website Template by Free-Template.co" class="img-fluid">
+            <img src="{{ asset('assets/images/'. $job->photo . '') }}" alt="Free Website Template by Free-Template.co" class="img-fluid">
           </div>
 
           <div class="job-listing-about d-sm-flex custom-width w-100 justify-content-between mx-4">
             <div class="job-listing-position custom-width w-50 mb-3 mb-sm-0">
-              <h2>Product Designer</h2>
-              <strong>Adidas</strong>
+              <h2>{{ $job->job_title }}</h2>
+              <strong>{{ $job->company }}</strong>
             </div>
             <div class="job-listing-location mb-3 mb-sm-0 custom-width w-25">
-              <span class="icon-room"></span> New York, New York
+              <span class="icon-room"></span> {{ $job->job_region }}
             </div>
             <div class="job-listing-meta">
-              <span class="badge badge-danger">Part Time</span>
+              <span class="badge badge-danger">{{ $job->job_type }}</span>
             </div>
           </div>
           
         </li>
-        <li class="job-listing d-block d-sm-flex pb-3 pb-sm-0 align-items-center">
-          <a href="job-single.html"></a>
-          <div class="job-listing-logo">
-            <img src="images/job_logo_2.jpg" alt="Free Website Template by Free-Template.co" class="img-fluid">
-          </div>
-
-          <div class="job-listing-about d-sm-flex custom-width w-100 justify-content-between mx-4">
-            <div class="job-listing-position custom-width w-50 mb-3 mb-sm-0">
-              <h2>Digital Marketing Director</h2>
-              <strong>Sprint</strong>
-            </div>
-            <div class="job-listing-location mb-3 mb-sm-0 custom-width w-25">
-              <span class="icon-room"></span> Overland Park, Kansas 
-            </div>
-            <div class="job-listing-meta">
-              <span class="badge badge-success">Full Time</span>
-            </div>
-          </div>
-        </li>
-
-        <li class="job-listing d-block d-sm-flex pb-3 pb-sm-0 align-items-center">
-          <a href="job-single.html"></a>
-          <div class="job-listing-logo">
-            <img src="images/job_logo_3.jpg" alt="Free Website Template by Free-Template.co" class="img-fluid">
-          </div>
-
-          <div class="job-listing-about d-sm-flex custom-width w-100 justify-content-between mx-4">
-            <div class="job-listing-position custom-width w-50 mb-3 mb-sm-0">
-              <h2>Back-end Engineer (Python)</h2>
-              <strong>Amazon</strong>
-            </div>
-            <div class="job-listing-location mb-3 mb-sm-0 custom-width w-25">
-              <span class="icon-room"></span> Overland Park, Kansas 
-            </div>
-            <div class="job-listing-meta">
-              <span class="badge badge-success">Full Time</span>
-            </div>
-          </div>
-        </li>
-
-        <li class="job-listing d-block d-sm-flex pb-3 pb-sm-0 align-items-center">
-          <a href="job-single.html"></a>
-          <div class="job-listing-logo">
-            <img src="images/job_logo_4.jpg" alt="Free Website Template by Free-Template.co" class="img-fluid">
-          </div>
-
-          <div class="job-listing-about d-sm-flex custom-width w-100 justify-content-between mx-4">
-            <div class="job-listing-position custom-width w-50 mb-3 mb-sm-0">
-              <h2>Senior Art Director</h2>
-              <strong>Microsoft</strong>
-            </div>
-            <div class="job-listing-location mb-3 mb-sm-0 custom-width w-25">
-              <span class="icon-room"></span> Anywhere 
-            </div>
-            <div class="job-listing-meta">
-              <span class="badge badge-success">Full Time</span>
-            </div>
-          </div>
-        </li>
-
-        <li class="job-listing d-block d-sm-flex pb-3 pb-sm-0 align-items-center">
-          <a href="job-single.html"></a>
-          <div class="job-listing-logo">
-            <img src="images/job_logo_5.jpg" alt="Free Website Template by Free-Template.co" class="img-fluid">
-          </div>
-
-          <div class="job-listing-about d-sm-flex custom-width w-100 justify-content-between mx-4">
-            <div class="job-listing-position custom-width w-50 mb-3 mb-sm-0">
-              <h2>Product Designer</h2>
-              <strong>Puma</strong>
-            </div>
-            <div class="job-listing-location mb-3 mb-sm-0 custom-width w-25">
-              <span class="icon-room"></span> San Mateo, CA 
-            </div>
-            <div class="job-listing-meta">
-              <span class="badge badge-success">Full Time</span>
-            </div>
-          </div>
-        </li>
-        <li class="job-listing d-block d-sm-flex pb-3 pb-sm-0 align-items-center">
-          <a href="job-single.html"></a>
-          <div class="job-listing-logo">
-            <img src="images/job_logo_1.jpg" alt="Free Website Template by Free-Template.co" class="img-fluid">
-          </div>
-
-          <div class="job-listing-about d-sm-flex custom-width w-100 justify-content-between mx-4">
-            <div class="job-listing-position custom-width w-50 mb-3 mb-sm-0">
-              <h2>Product Designer</h2>
-              <strong>Adidas</strong>
-            </div>
-            <div class="job-listing-location mb-3 mb-sm-0 custom-width w-25">
-              <span class="icon-room"></span> New York, New York
-            </div>
-            <div class="job-listing-meta">
-              <span class="badge badge-danger">Part Time</span>
-            </div>
-          </div>
-          
-        </li>
-        <li class="job-listing d-block d-sm-flex pb-3 pb-sm-0 align-items-center">
-          <a href="job-single.html"></a>
-          <div class="job-listing-logo">
-            <img src="images/job_logo_2.jpg" alt="Free Website Template by Free-Template.co" class="img-fluid">
-          </div>
-
-          <div class="job-listing-about d-sm-flex custom-width w-100 justify-content-between mx-4">
-            <div class="job-listing-position custom-width w-50 mb-3 mb-sm-0">
-              <h2>Digital Marketing Director</h2>
-              <strong>Sprint</strong>
-            </div>
-            <div class="job-listing-location mb-3 mb-sm-0 custom-width w-25">
-              <span class="icon-room"></span> Overland Park, Kansas 
-            </div>
-            <div class="job-listing-meta">
-              <span class="badge badge-success">Full Time</span>
-            </div>
-          </div>
-        </li>
-
-        
-
-        
       </ul>
-
-   
-
+      @endforeach
     </div>
   </section>
 
-  <section class="py-5 bg-image overlay-primary fixed overlay" style="background-image: url('images/hero_1.jpg');">
+  <section class="py-5 bg-image overlay-primary fixed overlay" style="background-image: url('{{ asset('assets/images/hero_1.jpg') }}');">
     <div class="container">
       <div class="row align-items-center">
         <div class="col-md-8">
@@ -313,29 +171,29 @@
           
         </div>
         <div class="col-6 col-lg-3 col-md-6 text-center">
-          <img src="images/logo_mailchimp.svg" alt="Image" class="img-fluid logo-1">
+          <img src="{{ asset('assets/images/logo_mailchimp.svg') }}" alt="Image" class="img-fluid logo-1">
         </div>
         <div class="col-6 col-lg-3 col-md-6 text-center">
-          <img src="images/logo_paypal.svg" alt="Image" class="img-fluid logo-2">
+          <img src="{{ asset('assets/images/logo_paypal.svg') }}" alt="Image" class="img-fluid logo-2">
         </div>
         <div class="col-6 col-lg-3 col-md-6 text-center">
-          <img src="images/logo_stripe.svg" alt="Image" class="img-fluid logo-3">
+          <img src="{{ asset('assets/images/logo_stripe.svg') }}" alt="Image" class="img-fluid logo-3">
         </div>
         <div class="col-6 col-lg-3 col-md-6 text-center">
-          <img src="images/logo_visa.svg" alt="Image" class="img-fluid logo-4">
+          <img src="{{ asset('assets/images/logo_visa.svg') }}" alt="Image" class="img-fluid logo-4">
         </div>
 
         <div class="col-6 col-lg-3 col-md-6 text-center">
-          <img src="images/logo_apple.svg" alt="Image" class="img-fluid logo-5">
+          <img src="{{ asset('assets/images/logo_apple.svg') }}" alt="Image" class="img-fluid logo-5">
         </div>
         <div class="col-6 col-lg-3 col-md-6 text-center">
-          <img src="images/logo_tinder.svg" alt="Image" class="img-fluid logo-6">
+          <img src="{{ asset('assets/images/logo_tinder.svg') }}" alt="Image" class="img-fluid logo-6">
         </div>
         <div class="col-6 col-lg-3 col-md-6 text-center">
-          <img src="images/logo_sony.svg" alt="Image" class="img-fluid logo-7">
+          <img src="{{ asset('assets/images/logo_sony.svg') }}" alt="Image" class="img-fluid logo-7">
         </div>
         <div class="col-6 col-lg-3 col-md-6 text-center">
-          <img src="images/logo_airbnb.svg" alt="Image" class="img-fluid logo-8">
+          <img src="{{ asset('assets/images/logo_airbnb.svg') }}" alt="Image" class="img-fluid logo-8">
         </div>
       </div>
     </div>
@@ -356,7 +214,7 @@
               </blockquote>
             </div>
             <div class="col-lg-6 align-self-end text-center text-lg-right">
-              <img src="images/person_transparent_2.png" alt="Image" class="img-fluid mb-0">
+              <img src="{{ asset('assets/images/person_transparent_2.png') }}" alt="Image" class="img-fluid mb-0">
             </div>
           </div>
         </div>
@@ -370,7 +228,7 @@
               </blockquote>
             </div>
             <div class="col-lg-6 align-self-end text-center text-lg-right">
-              <img src="images/person_transparent.png" alt="Image" class="img-fluid mb-0">
+              <img src="{{ asset('assets/images/person_transparent.png') }}" alt="Image" class="img-fluid mb-0">
             </div>
           </div>
         </div>
@@ -379,7 +237,7 @@
 
   </section>
 
-  <section class="pt-5 bg-image overlay-primary fixed overlay" style="background-image: url('images/hero_1.jpg');">
+  <section class="pt-5 bg-image overlay-primary fixed overlay" style="background-image: url('{{ asset('assets/images/hero_1.jpg') }}');">
     <div class="container">
       <div class="row">
         <div class="col-md-6 align-self-center text-center text-md-left mb-5 mb-md-0">
@@ -391,7 +249,7 @@
           </p>
         </div>
         <div class="col-md-6 ml-auto align-self-end">
-          <img src="images/apps.png" alt="Free Website Template by Free-Template.co" class="img-fluid">
+          <img src="{{ asset('assets/images/apps.png') }}" alt="Free Website Template by Free-Template.co" class="img-fluid">
         </div>
       </div>
     </div>

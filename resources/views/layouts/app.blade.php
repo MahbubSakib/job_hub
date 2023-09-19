@@ -147,7 +147,7 @@
         </main>
     </div>
 
-    <footer class="site-footer">
+    <footer class="site-footer" style="margin-top: -24px;">
 
         <a href="#top" class="smoothscroll scroll-top">
           <span class="icon-keyboard_arrow_up"></span>
