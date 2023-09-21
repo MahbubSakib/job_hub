@@ -10,7 +10,13 @@ class JobController extends Controller
     public function show($id)
     {
         $job = Job::findOrFail($id);
-        // dd($job);
-        return view('backend.job.show', compact('job'));
+        $relatedJobs = Job::where('category',  $job->category)
+                          ->where('id', '!=', $id)
+                          ->get();
+        $relatedJobsCount = Job::where('category',  $job->category)
+                              ->where('id', '!=', $id)
+                               ->count();
+        // dd($relatedJobsCount);
+        return view('backend.job.show', compact('job', 'relatedJobs', 'relatedJobsCount'));
     }
 }

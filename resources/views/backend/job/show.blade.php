@@ -43,40 +43,21 @@
               <div class="mb-5">
                 <figure class="mb-5"><img src={{ asset('assets/images/job_single_img_1.jpg') }} alt="Image" class="img-fluid rounded"></figure>
                 <h3 class="h5 d-flex align-items-center mb-4 text-primary"><span class="icon-align-left mr-3"></span>Job Description</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Debitis illum fuga eveniet. Deleniti asperiores, commodi quae ipsum quas est itaque, ipsa, dolore beatae voluptates nemo blanditiis iste eius officia minus.</p>
-                <p>Velit unde aliquam et voluptas reiciendis non sapiente labore, deleniti asperiores blanditiis nihil quia officiis dolor vero iste dolore vel molestiae saepe. Id nisi, consequuntur sunt impedit quidem, vitae mollitia!</p>
+                {{ $job->job_description }}
               </div>
               <div class="mb-5">
                 <h3 class="h5 d-flex align-items-center mb-4 text-primary"><span class="icon-rocket mr-3"></span>Responsibilities</h3>
-                <ul class="list-unstyled m-0 p-0">
-                  <li class="d-flex align-items-start mb-2"><span class="icon-check_circle mr-2 text-muted"></span><span>Necessitatibus quibusdam facilis</span></li>
-                  <li class="d-flex align-items-start mb-2"><span class="icon-check_circle mr-2 text-muted"></span><span>Velit unde aliquam et voluptas reiciendis n Velit unde aliquam et voluptas reiciendis non sapiente labore</span></li>
-                  <li class="d-flex align-items-start mb-2"><span class="icon-check_circle mr-2 text-muted"></span><span>Commodi quae ipsum quas est itaque</span></li>
-                  <li class="d-flex align-items-start mb-2"><span class="icon-check_circle mr-2 text-muted"></span><span>Lorem ipsum dolor sit amet, consectetur adipisicing elit</span></li>
-                  <li class="d-flex align-items-start mb-2"><span class="icon-check_circle mr-2 text-muted"></span><span>Deleniti asperiores blanditiis nihil quia officiis dolor</span></li>
-                </ul>
+                {{ $job->responsibilities }}
               </div>
   
               <div class="mb-5">
                 <h3 class="h5 d-flex align-items-center mb-4 text-primary"><span class="icon-book mr-3"></span>Education + Experience</h3>
-                <ul class="list-unstyled m-0 p-0">
-                  <li class="d-flex align-items-start mb-2"><span class="icon-check_circle mr-2 text-muted"></span><span>Necessitatibus quibusdam facilis</span></li>
-                  <li class="d-flex align-items-start mb-2"><span class="icon-check_circle mr-2 text-muted"></span><span>Velit unde aliquam et voluptas reiciendis non sapiente labore</span></li>
-                  <li class="d-flex align-items-start mb-2"><span class="icon-check_circle mr-2 text-muted"></span><span>Commodi quae ipsum quas est itaque</span></li>
-                  <li class="d-flex align-items-start mb-2"><span class="icon-check_circle mr-2 text-muted"></span><span>Lorem ipsum dolor sit amet, consectetur adipisicing elit</span></li>
-                  <li class="d-flex align-items-start mb-2"><span class="icon-check_circle mr-2 text-muted"></span><span>Deleniti asperiores blanditiis nihil quia officiis dolor</span></li>
-                </ul>
+                {{ $job->education_experience }}
               </div>
   
               <div class="mb-5">
                 <h3 class="h5 d-flex align-items-center mb-4 text-primary"><span class="icon-turned_in mr-3"></span>Other Benifits</h3>
-                <ul class="list-unstyled m-0 p-0">
-                  <li class="d-flex align-items-start mb-2"><span class="icon-check_circle mr-2 text-muted"></span><span>Necessitatibus quibusdam facilis</span></li>
-                  <li class="d-flex align-items-start mb-2"><span class="icon-check_circle mr-2 text-muted"></span><span>Velit unde aliquam et voluptas reiciendis non sapiente labore</span></li>
-                  <li class="d-flex align-items-start mb-2"><span class="icon-check_circle mr-2 text-muted"></span><span>Commodi quae ipsum quas est itaque</span></li>
-                  <li class="d-flex align-items-start mb-2"><span class="icon-check_circle mr-2 text-muted"></span><span>Lorem ipsum dolor sit amet, consectetur adipisicing elit</span></li>
-                  <li class="d-flex align-items-start mb-2"><span class="icon-check_circle mr-2 text-muted"></span><span>Deleniti asperiores blanditiis nihil quia officiis dolor</span></li>
-                </ul>
+                {{ $job->other_benifits }}
               </div>
   
               <div class="row mb-5">
@@ -94,14 +75,14 @@
               <div class="bg-light p-3 border rounded mb-4">
                 <h3 class="text-primary  mt-3 h5 pl-3 mb-3 ">Job Summary</h3>
                 <ul class="list-unstyled pl-3 mb-0">
-                  <li class="mb-2"><strong class="text-black">Published on:</strong> April 14, 2019</li>
-                  <li class="mb-2"><strong class="text-black">Vacancy:</strong> 20</li>
-                  <li class="mb-2"><strong class="text-black">Employment Status:</strong> Full-time</li>
-                  <li class="mb-2"><strong class="text-black">Experience:</strong> 2 to 3 year(s)</li>
-                  <li class="mb-2"><strong class="text-black">Job Location:</strong> New ork City</li>
-                  <li class="mb-2"><strong class="text-black">Salary:</strong> $60k - $100k</li>
-                  <li class="mb-2"><strong class="text-black">Gender:</strong> Any</li>
-                  <li class="mb-2"><strong class="text-black">Application Deadline:</strong> April 28, 2019</li>
+                  <li class="mb-2"><strong class="text-black">Published on:</strong> {{ \Carbon\Carbon::parse($job->application_published_on)->format('F d, Y') }}</li>
+                  <li class="mb-2"><strong class="text-black">Vacancy:</strong> {{ $job->job_vacancy }}</li>
+                  <li class="mb-2"><strong class="text-black">Employment Status:</strong> {{ $job->job_type }}</li>
+                  <li class="mb-2"><strong class="text-black">Experience:</strong> {{ $job->job_experience }}</li>
+                  <li class="mb-2"><strong class="text-black">Job Location:</strong> {{ $job->job_region }}</li>
+                  <li class="mb-2"><strong class="text-black">Salary:</strong> {{ $job->salary }}</li>
+                  <li class="mb-2"><strong class="text-black">Gender:</strong> {{ $job->gender }}</li>
+                  <li class="mb-2"><strong class="text-black">Application Deadline:</strong> {{ \Carbon\Carbon::parse($job->application_deadline)->format('F d, Y') }}</li>
                 </ul>
               </div>
   
@@ -124,153 +105,33 @@
   
           <div class="row mb-5 justify-content-center">
             <div class="col-md-7 text-center">
-              <h2 class="section-title mb-2">22,392 Related Jobs</h2>
+              <h2 class="section-title mb-2">{{ $relatedJobsCount }} Related Jobs</h2>
             </div>
           </div>
           
           <ul class="job-listings mb-5">
-            <li class="job-listing d-block d-sm-flex pb-3 pb-sm-0 align-items-center">
-              <a href="job-single.html"></a>
-              <div class="job-listing-logo">
-                <img src={{ asset('assets/images/job_logo_1.jpg') }} alt="Image" class="img-fluid">
-              </div>
-  
-              <div class="job-listing-about d-sm-flex custom-width w-100 justify-content-between mx-4">
-                <div class="job-listing-position custom-width w-50 mb-3 mb-sm-0">
-                  <h2>Product Designer</h2>
-                  <strong>Adidas</strong>
+            @foreach($relatedJobs as $relatedJob)
+              <li class="job-listing d-block d-sm-flex pb-3 pb-sm-0 align-items-center">
+                <a href="{{ route('job.show', $relatedJob->id) }}"></a>
+                <div class="job-listing-logo">
+                  <img src={{ asset('assets/images/job_logo_1.jpg') }} alt="Image" class="img-fluid">
                 </div>
-                <div class="job-listing-location mb-3 mb-sm-0 custom-width w-25">
-                  <span class="icon-room"></span> New York, New York
+    
+                <div class="job-listing-about d-sm-flex custom-width w-100 justify-content-between mx-4">
+                  <div class="job-listing-position custom-width w-50 mb-3 mb-sm-0">
+                    <h2>{{ $relatedJob->job_title }}</h2>
+                    <strong>{{ $relatedJob->company}}</strong>
+                  </div>
+                  <div class="job-listing-location mb-3 mb-sm-0 custom-width w-25">
+                    <span class="icon-room"></span> {{ $relatedJob->job_region }}
+                  </div>
+                  <div class="job-listing-meta">
+                    <span class="badge badge-danger">{{ $relatedJob->job_type }}</span>
+                  </div>
                 </div>
-                <div class="job-listing-meta">
-                  <span class="badge badge-danger">Part Time</span>
-                </div>
-              </div>
-              
-            </li>
-            <li class="job-listing d-block d-sm-flex pb-3 pb-sm-0 align-items-center">
-              <a href="job-single.html"></a>
-              <div class="job-listing-logo">
-                <img src={{ asset('assets/images/job_logo_2.jpg') }} alt="Image" class="img-fluid">
-              </div>
-  
-              <div class="job-listing-about d-sm-flex custom-width w-100 justify-content-between mx-4">
-                <div class="job-listing-position custom-width w-50 mb-3 mb-sm-0">
-                  <h2>Digital Marketing Director</h2>
-                  <strong>Sprint</strong>
-                </div>
-                <div class="job-listing-location mb-3 mb-sm-0 custom-width w-25">
-                  <span class="icon-room"></span> Overland Park, Kansas 
-                </div>
-                <div class="job-listing-meta">
-                  <span class="badge badge-success">Full Time</span>
-                </div>
-              </div>
-            </li>
-  
-            <li class="job-listing d-block d-sm-flex pb-3 pb-sm-0 align-items-center">
-              <a href="job-single.html"></a>
-              <div class="job-listing-logo">
-                <img src={{ asset('assets/images/job_logo_3.jpg') }} alt="Image" class="img-fluid">
-              </div>
-  
-              <div class="job-listing-about d-sm-flex custom-width w-100 justify-content-between mx-4">
-                <div class="job-listing-position custom-width w-50 mb-3 mb-sm-0">
-                  <h2>Back-end Engineer (Python)</h2>
-                  <strong>Amazon</strong>
-                </div>
-                <div class="job-listing-location mb-3 mb-sm-0 custom-width w-25">
-                  <span class="icon-room"></span> Overland Park, Kansas 
-                </div>
-                <div class="job-listing-meta">
-                  <span class="badge badge-success">Full Time</span>
-                </div>
-              </div>
-            </li>
-  
-            <li class="job-listing d-block d-sm-flex pb-3 pb-sm-0 align-items-center">
-              <a href="job-single.html"></a>
-              <div class="job-listing-logo">
-                <img src={{ asset('assets/images/job_logo_4.jpg') }} alt="Image" class="img-fluid">
-              </div>
-  
-              <div class="job-listing-about d-sm-flex custom-width w-100 justify-content-between mx-4">
-                <div class="job-listing-position custom-width w-50 mb-3 mb-sm-0">
-                  <h2>Senior Art Director</h2>
-                  <strong>Microsoft</strong>
-                </div>
-                <div class="job-listing-location mb-3 mb-sm-0 custom-width w-25">
-                  <span class="icon-room"></span> Anywhere 
-                </div>
-                <div class="job-listing-meta">
-                  <span class="badge badge-success">Full Time</span>
-                </div>
-              </div>
-            </li>
-  
-            <li class="job-listing d-block d-sm-flex pb-3 pb-sm-0 align-items-center">
-              <a href="job-single.html"></a>
-              <div class="job-listing-logo">
-                <img src={{ asset('assets/images/job_logo_5.jpg') }} alt="Image" class="img-fluid">
-              </div>
-  
-              <div class="job-listing-about d-sm-flex custom-width w-100 justify-content-between mx-4">
-                <div class="job-listing-position custom-width w-50 mb-3 mb-sm-0">
-                  <h2>Product Designer</h2>
-                  <strong>Puma</strong>
-                </div>
-                <div class="job-listing-location mb-3 mb-sm-0 custom-width w-25">
-                  <span class="icon-room"></span> San Mateo, CA 
-                </div>
-                <div class="job-listing-meta">
-                  <span class="badge badge-success">Full Time</span>
-                </div>
-              </div>
-            </li>
-            <li class="job-listing d-block d-sm-flex pb-3 pb-sm-0 align-items-center">
-              <a href="job-single.html"></a>
-              <div class="job-listing-logo">
-                <img src={{ asset('assets/images/job_logo_1.jpg') }} alt="Image" class="img-fluid">
-              </div>
-  
-              <div class="job-listing-about d-sm-flex custom-width w-100 justify-content-between mx-4">
-                <div class="job-listing-position custom-width w-50 mb-3 mb-sm-0">
-                  <h2>Product Designer</h2>
-                  <strong>Adidas</strong>
-                </div>
-                <div class="job-listing-location mb-3 mb-sm-0 custom-width w-25">
-                  <span class="icon-room"></span> New York, New York
-                </div>
-                <div class="job-listing-meta">
-                  <span class="badge badge-danger">Part Time</span>
-                </div>
-              </div>
-              
-            </li>
-            <li class="job-listing d-block d-sm-flex pb-3 pb-sm-0 align-items-center">
-              <a href="job-single.html"></a>
-              <div class="job-listing-logo">
-                <img src={{ asset('assets/images/job_logo_2.jpg') }} alt="Image" class="img-fluid">
-              </div>
-  
-              <div class="job-listing-about d-sm-flex custom-width w-100 justify-content-between mx-4">
-                <div class="job-listing-position custom-width w-50 mb-3 mb-sm-0">
-                  <h2>Digital Marketing Director</h2>
-                  <strong>Sprint</strong>
-                </div>
-                <div class="job-listing-location mb-3 mb-sm-0 custom-width w-25">
-                  <span class="icon-room"></span> Overland Park, Kansas 
-                </div>
-                <div class="job-listing-meta">
-                  <span class="badge badge-success">Full Time</span>
-                </div>
-              </div>
-            </li>
-  
-            
-  
-            
+                
+              </li>
+            @endforeach
           </ul>
   
        
