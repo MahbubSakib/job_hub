@@ -18,7 +18,19 @@
         </div>
       </section>
   
-      
+      {{-- Success Message --}}
+      <div class="row">
+          <div class="col-lg-12 col-lg-offset-2">
+              @if (session('successMsg'))
+                  <div class="alert bg-success alert-styled-left changeAlert" role="alert">
+                      {{ session('successMsg') }}
+                      <button type="button" class="close" data-dismiss="alert">
+                          <span>×</span><span class="sr-only">Close</span>
+                      </button>
+                  </div>
+              @endif
+          </div>
+      </div>
       <section class="site-section">
         <div class="container">
           <div class="row align-items-center mb-5">
@@ -62,8 +74,24 @@
   
               <div class="row mb-5">
                 <div class="col-6">
-                  <button class="btn btn-block btn-light btn-md"><i class="icon-heart"></i>Save Job</button>
-                  <!--add text-danger to it to make it read-->
+                  <form action="{{ route('job.save') }} " method="POST">
+                    @csrf
+
+                    <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
+                    <input type="hidden" name="id" value="{{ $job->id }}">
+                    <input type="hidden" name="job_title" value="{{ $job->job_title }}">
+                    <input type="hidden" name="photo" value="{{ $job->photo }}">
+                    <input type="hidden" name="company" value="{{ $job->company }}">
+                    <input type="hidden" name="job_region" value="{{ $job->job_region }}">
+                    <input type="hidden" name="job_type" value="{{ $job->job_type }}">
+
+                    @if ($jobSaved > 0)
+                        <button type="submit" class="btn btn-block btn-success btn-md" disabled><i class="icon-heart"></i>Saved</button>
+                    @else
+                        <button type="submit" class="btn btn-block btn-danger btn-md"><i class="icon-heart"></i>Save Job</button>
+                    @endif
+                    
+                  </form>
                 </div>
                 <div class="col-6">
                   <button class="btn btn-block btn-primary btn-md">Apply Now</button>
@@ -89,9 +117,9 @@
               <div class="bg-light p-3 border rounded">
                 <h3 class="text-primary  mt-3 h5 pl-3 mb-3 ">Share</h3>
                 <div class="px-3">
-                  <a href="#" class="pt-3 pb-3 pr-3 pl-0"><span class="icon-facebook"></span></a>
-                  <a href="#" class="pt-3 pb-3 pr-3 pl-0"><span class="icon-twitter"></span></a>
-                  <a href="#" class="pt-3 pb-3 pr-3 pl-0"><span class="icon-linkedin"></span></a>
+                  <a href="https://www.facebook.com/sharer/sharer.php?u={{ route('job.show', $job->id) }}&quote={{ $job->job_title }}" class="pt-3 pb-3 pr-3 pl-0"><span class="icon-facebook"></span></a>
+                  <a href="https://twitter.com/intent/tweet?text={{ $job->job_title }}&url={{ route('job.show', $job->id) }}" class="pt-3 pb-3 pr-3 pl-0"><span class="icon-twitter"></span></a>
+                  <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ route('job.show', $job->id) }}" class="pt-3 pb-3 pr-3 pl-0"><span class="icon-linkedin"></span></a>
                 </div>
               </div>
   
