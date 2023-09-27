@@ -23,3 +23,4 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('/job/{id}', [App\Http\Controllers\JobController::class, 'show'])->name('job.show');
 Route::post('/job/save', [App\Http\Controllers\JobController::class, 'jobSave'])->name('job.save');
 Route::post('/job/apply', [App\Http\Controllers\JobController::class, 'jobApply'])->name('job.apply');
+Route::get('/category/{id}', [App\Http\Controllers\CategoryController::class, 'show'])->name('category.show');

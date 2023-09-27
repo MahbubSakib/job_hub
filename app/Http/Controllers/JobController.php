@@ -3,9 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Application;
+use App\Models\Category;
 use App\Models\Job;
 use App\Models\JobSave;
-use App\Models\Application;
 use Auth;
 
 class JobController extends Controller
@@ -22,8 +23,12 @@ class JobController extends Controller
         $jobSaved = JobSave::where('job_id', $id)
                             ->where('user_id', Auth::user()->id)
                             ->count();
+        $jobApplied = Application::where('user_id', $id)
+                                ->where('job_id', $id)
+                                ->count();
+        $categories = Category::get();
         
-        return view('backend.job.show', compact('job', 'relatedJobs', 'relatedJobsCount', 'jobSaved'));
+        return view('backend.job.show', compact('job', 'relatedJobs', 'relatedJobsCount', 'jobSaved', 'jobApplied', 'categories'));
     }
 
     public function jobSave(Request $request)

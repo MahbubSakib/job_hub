@@ -16,7 +16,7 @@
             </div>
           </div>
         </div>
-      </section>
+    </section>
   
       {{-- Success Message --}}
       {{-- <div class="container">
@@ -135,7 +135,11 @@
                     <input type="hidden" name="job_region" value="{{ $job->job_region }}">
                     <input type="hidden" name="job_type" value="{{ $job->job_type }}">
                     
-                    <button class="btn btn-block btn-primary btn-md">Apply Now</button>
+                    @if ($jobApplied > 0)
+                      <button class="btn btn-block btn-primary btn-md" disabled>Already Applied</button>
+                    @else
+                      <button class="btn btn-block btn-primary btn-md">Apply Now</button>
+                    @endif
                   </form>
                 </div>
               </div>
@@ -163,6 +167,15 @@
                   <a href="https://twitter.com/intent/tweet?text={{ $job->job_title }}&url={{ route('job.show', $job->id) }}" class="pt-3 pb-3 pr-3 pl-0"><span class="icon-twitter"></span></a>
                   <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ route('job.show', $job->id) }}" class="pt-3 pb-3 pr-3 pl-0"><span class="icon-linkedin"></span></a>
                 </div>
+              </div>
+
+              <div class="bg-light p-3 border rounded mb-4 mt-5">
+                <h3 class="text-primary  mt-3 h5 pl-3 mb-3 ">Categories</h3>
+                <ul class="list-unstyled pl-3 mb-0">
+                  @foreach($categories as $category)
+                    <li class="mb-2"> <a class="text-decoration-none" href="{{ route('category.show', $category->id) }}"> {{ $category->name }} </a></li>
+                  @endforeach
+                </ul>
               </div>
   
             </div>
