@@ -22,3 +22,4 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/job/{id}', [App\Http\Controllers\JobController::class, 'show'])->name('job.show');
 Route::post('/job/save', [App\Http\Controllers\JobController::class, 'jobSave'])->name('job.save');
+Route::post('/job/apply', [App\Http\Controllers\JobController::class, 'jobApply'])->name('job.apply');

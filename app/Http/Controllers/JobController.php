@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Job;
 use App\Models\JobSave;
+use App\Models\Application;
 use Auth;
 
 class JobController extends Controller
@@ -37,5 +38,25 @@ class JobController extends Controller
             'job_type' => $request->job_type,
         ]);
         return redirect()->back()->with('successMsg', 'Job has been saved');
+    }
+
+    public function jobApply(Request $request)
+    {
+        if(!empty(Auth::user()->cv)){
+            $jobApply = Application::create([
+                'cv' => Auth::user()->cv,
+                'job_id' => $request->id,
+                'user_id' => Auth::user()->id,
+                'job_title' => $request->job_title,
+                'company' => $request->company,
+                'job_photo' => $request->photo,
+                'job_region' => $request->job_region,
+                'job_type' => $request->job_type,
+            ]);
+
+            return redirect()->back()->with('jobApplied', 'You have applied for this job successfully!');
+        }else{
+            return redirect()->back()->with('noCV', 'Please upload your CV first');
+        }
     }
 }

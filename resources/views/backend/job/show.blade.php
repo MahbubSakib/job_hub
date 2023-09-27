@@ -19,7 +19,14 @@
       </section>
   
       {{-- Success Message --}}
-      <div class="row">
+      {{-- <div class="container">
+        @if(Session::has('successMsg'))
+          <div class="alert alert-success">
+            <p>{!! Session::get('successMsg') !!}</p>
+          </div>
+        @endif
+      </div> --}}
+      <div class="container">
           <div class="col-lg-12 col-lg-offset-2">
               @if (session('successMsg'))
                   <div class="alert bg-success alert-styled-left changeAlert" role="alert">
@@ -30,6 +37,30 @@
                   </div>
               @endif
           </div>
+      </div>
+      <div class="container">
+        <div class="col-lg-12 col-lg-offset-2">
+            @if (session('jobApplied'))
+                <div class="alert bg-success alert-styled-left changeAlert" role="alert">
+                    {{ session('jobApplied') }}
+                    <button type="button" class="close" data-dismiss="alert">
+                        <span>×</span><span class="sr-only">Close</span>
+                    </button>
+                </div>
+            @endif
+        </div>
+      </div>
+      <div class="container">
+        <div class="col-lg-12 col-lg-offset-2">
+            @if (session('noCV'))
+                <div class="alert bg-success alert-styled-left changeAlert" role="alert">
+                    {{ session('noCV') }}
+                    <button type="button" class="close" data-dismiss="alert">
+                        <span>×</span><span class="sr-only">Close</span>
+                    </button>
+                </div>
+            @endif
+        </div>
       </div>
       <section class="site-section">
         <div class="container">
@@ -94,7 +125,18 @@
                   </form>
                 </div>
                 <div class="col-6">
-                  <button class="btn btn-block btn-primary btn-md">Apply Now</button>
+                  <form action="{{ route('job.apply') }} " method="POST">
+                    @csrf
+                  
+                    <input type="hidden" name="id" value="{{ $job->id }}">
+                    <input type="hidden" name="job_title" value="{{ $job->job_title }}">
+                    <input type="hidden" name="photo" value="{{ $job->photo }}">
+                    <input type="hidden" name="company" value="{{ $job->company }}">
+                    <input type="hidden" name="job_region" value="{{ $job->job_region }}">
+                    <input type="hidden" name="job_type" value="{{ $job->job_type }}">
+                    
+                    <button class="btn btn-block btn-primary btn-md">Apply Now</button>
+                  </form>
                 </div>
               </div>
   
