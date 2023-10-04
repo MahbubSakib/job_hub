@@ -24,3 +24,6 @@ Route::get('/job/{id}', [App\Http\Controllers\JobController::class, 'show'])->na
 Route::post('/job/save', [App\Http\Controllers\JobController::class, 'jobSave'])->name('job.save');
 Route::post('/job/apply', [App\Http\Controllers\JobController::class, 'jobApply'])->name('job.apply');
 Route::get('/category/{id}', [App\Http\Controllers\CategoryController::class, 'show'])->name('category.show');
+Route::get('/user/profile', [App\Http\Controllers\UserController::class, 'show'])->name('profile.show');
+Route::get('/user/applied/jobs', [App\Http\Controllers\UserController::class, 'appliedJobs'])->name('profile.applied.jobs');
+Route::get('/user/saved/jobs', [App\Http\Controllers\UserController::class, 'savedJobs'])->name('profile.saved.jobs');
